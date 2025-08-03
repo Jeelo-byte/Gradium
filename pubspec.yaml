@@ -34,8 +34,18 @@ dependencies:
   # UI and Icons
   cupertino_icons: ^1.0.8
   
+  # Authentication
+  google_sign_in: ^6.2.1
+  sign_in_with_apple: ^6.1.1
+  
   # Supabase
   supabase_flutter: ^2.5.2
+  
+  # Environment Configuration
+  flutter_dotenv: ^5.1.0
+  
+  # Routing
+  go_router: ^16.0.0
   
   # State Management
   flutter_riverpod: ^2.5.1
@@ -44,7 +54,7 @@ dependencies:
   flutter_secure_storage: ^9.3.0
   
   # HTTP Client
-  http: ^1.2.1
+  http: ^1.4.0
   
   # JSON Handling
   json_annotation: ^4.9.0
