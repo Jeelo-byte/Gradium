@@ -12,6 +12,7 @@ Gradium is a cross-platform mobile and web application designed for students to 
 *   **Profile Sync:** Securely synchronize user profiles with privacy settings for controlling data sharing.
 *   **Credential Storage:** Store school grade website credentials encrypted either in Supabase Vault (server-side) or locally using Flutter Secure Storage (client-side), prioritizing client-side storage for sensitive data.
 
+
 ### Core Features
 
 #### Grade & GPA Tracking
@@ -60,10 +61,13 @@ Gradium is a cross-platform mobile and web application designed for students to 
 ## Technical Architecture & Tools
 
 *   **Frontend:** Flutter for cross-platform development (iOS, Android, Web).
-*   **Backend:** Supabase.
+*   **Backend:** Supabase (Supabase is set up and initialized in the project).
     *   **Database:** Supabase Postgres DB with Row-Level Security (RLS) for enforcing data privacy, especially for social features.
     *   **Functions:** Supabase Edge Functions for efficient leaderboard calculations and analytics processing.
-    *   **Authentication:** Supabase Auth for user sign-in.
+    *   **Authentication:** Supabase Auth for user sign-in (Supabase Auth is planned for implementation).
+*   **API Integration:** Integration with the Frisco ISD HAC API for retrieving academic data. Handle URL-encoding of credentials as required by the API.
+    *   Base URL: `https://friscoisdhacapi.vercel.app`
+    *   Endpoints: `/api/info`, `/api/gpa`, `/api/schedule`, `/api/currentclasses`, `/api/pastclasses`, `/api/transcript`.
 *   **Secure Storage:** Flutter Secure Storage for local encryption of sensitive credentials like school portal logins.
 *   **State Management:** Utilize Riverpod or Bloc for managing application state effectively.
 *   **Animations:** Implement Flutter animations, including Hero transitions, AnimatedContainers, and potentially Rive or Lottie for complex cross-platform animations.
