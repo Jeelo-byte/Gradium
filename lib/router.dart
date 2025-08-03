@@ -1,60 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:myapp/lib/sign_up_screen.dart';
-
-// Placeholder for the Home Screen
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Gradium Home')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Welcome to Gradium! You are logged in.'),
-            ElevatedButton(
-              onPressed: () async {
-                await Supabase.instance.client.auth.signOut();
-                context.go('/login');
-              },
-              child: const Text('Sign Out'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+import 'screens/auth_screen.dart';
+import 'screens/main_app_shell.dart';
 
 final GoRouter router = GoRouter(
+  initialLocation: '/',
   routes: <RouteBase>[
     GoRoute(
-      path: '/login',
+      path: '/auth',
       builder: (BuildContext context, GoRouterState state) {
-        return const SignUpScreen();
+        return const AuthScreen();
+      },
+    ),
+    GoRoute(
+      path: '/dashboard',
+      builder: (BuildContext context, GoRouterState state) {
+        return const MainAppShell();
       },
     ),
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const HomeScreen();
+        return const MainAppShell();
       },
     ),
   ],
   redirect: (BuildContext context, GoRouterState state) {
     final bool loggedIn = Supabase.instance.client.auth.currentUser != null;
-    final bool loggingIn = state.matchedLocation == '/login';
+    final bool loggingIn = state.matchedLocation == '/auth';
 
     if (!loggedIn) {
-      return loggingIn ? null : '/login';
+      return loggingIn ? null : '/auth';
     }
 
     if (loggingIn) {
-      return '/';
+      return '/dashboard';
     }
 
     return null;
