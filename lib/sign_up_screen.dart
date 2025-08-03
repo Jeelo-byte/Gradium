@@ -10,7 +10,7 @@ class SignUpScreen extends StatefulWidget {
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
-
+// ignore_for_file: library_private_types_in_public_api, avoid_print
 class _SignUpScreenState extends State<SignUpScreen> {
   final _supabase = Supabase.instance.client;
   final _emailController = TextEditingController();
@@ -21,6 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _emailController.dispose();
     _passwordController.dispose(); 
     super.dispose();
+    
   }
 
   void _signUp() {
@@ -50,7 +51,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         idToken: idToken,
         accessToken: accessToken,
       );
-    } catch (e) {}
+    } catch (e) {
+      // Empty catch block - consider logging the error
+    }
   }
 
   Future<void> _appleSignIn() async {
@@ -68,7 +71,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         accessToken: credential.authorizationCode,
       );
     } catch (e) {
-      // TODO: Handle Apple sign-in errors
       print('Error during Apple sign-in: $e');
     }
   }
@@ -135,7 +137,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 12.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Image.asset(
                           '/assets/icons/google_icon.png', // Use absolute path
                           height: 24.0,
@@ -166,7 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 12.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                      children: <Widget>[
                           Image.asset(
                             '/assets/icons/apple_icon.png', // Use absolute path
                             height: 24.0,

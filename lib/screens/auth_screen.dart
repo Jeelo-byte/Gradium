@@ -4,7 +4,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../providers/app_providers.dart';
-import '../services/academic_service.dart';
 
 class AuthScreen extends ConsumerStatefulWidget {
   const AuthScreen({super.key});
@@ -434,7 +433,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
         accessToken: accessToken,
       );
 
-      _showCredentialsForm();
+      setState(() => _showCredentialsForm = true);
     } catch (e) {
       _setError('Google sign-in failed: $e');
     }
@@ -460,7 +459,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
         accessToken: credential.authorizationCode,
       );
 
-      _showCredentialsForm();
+      setState(() => _showCredentialsForm = true);
     } catch (e) {
       _setError('Apple sign-in failed: $e');
     }
@@ -479,7 +478,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
         password: _passwordController.text,
       );
 
-      _showCredentialsForm();
+      setState(() => _showCredentialsForm = true);
     } catch (e) {
       _setError('Email sign-in failed: $e');
     }

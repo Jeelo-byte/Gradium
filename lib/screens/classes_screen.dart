@@ -94,7 +94,7 @@ class ClassesScreen extends ConsumerWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
-          onTap: () => _showClassDetails(classItem),
+          onTap: () => _showClassDetails(context, classItem),
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -215,15 +215,15 @@ class ClassesScreen extends ConsumerWidget {
     return Colors.red;
   }
 
-  void _showClassDetails(Class classItem) {
+  void _showClassDetails(BuildContext context, Class classItem) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => _buildClassDetailsSheet(classItem),
-    );
+      builder: (context) => _buildClassDetailsSheet(context, classItem),
+    ); 
   }
-
+ 
   Widget _buildClassDetailsSheet(Class classItem) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.7,

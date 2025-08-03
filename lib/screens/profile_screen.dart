@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../providers/app_providers.dart';
 import '../models/user_profile.dart';
-import '../services/academic_service.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -35,7 +34,7 @@ class ProfileScreen extends ConsumerWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: [          _buildProfileHeader(context, profile),
           _buildProfileHeader(profile),
           const SizedBox(height: 24),
           _buildGpaSection(gpaAsync),
@@ -50,7 +49,7 @@ class ProfileScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildProfileHeader(UserProfile? profile) {
+  Widget _buildProfileHeader(BuildContext context, UserProfile? profile) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -221,7 +220,7 @@ class ProfileScreen extends ConsumerWidget {
             icon: Icons.visibility,
             title: 'Leaderboard Participation',
             subtitle: profile?.optInLeaderboard == true ? 'Opted In' : 'Opted Out',
-            onTap: () => _showLeaderboardSettings(context, ref, profile),
+            onTap: () => _showLeaderboardSettings(context, ref, profile!),
           ),
           const Divider(),
           _buildSettingTile(
@@ -361,7 +360,7 @@ class ProfileScreen extends ConsumerWidget {
     );
   }
 
-  void _showLeaderboardSettings(BuildContext context, WidgetRef ref, UserProfile? profile) {
+  void _showLeaderboardSettings(BuildContext context, WidgetRef ref, UserProfile profile) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
